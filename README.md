@@ -10,6 +10,38 @@ An open source event store, versioned and distributed NoSQL local first database
 
 **Timeline** is json first and schemaless with optional schema validation and enforcement, giving both flexibility of nosql databases and the structure of sql databases where needed, json is the primary interface of querying which makes it easy to use and understand.
 
+## **How Developers Could Interact with Timeline**
+
+### **1. JSON Query Example**
+
+```json
+{
+  "find": "users",
+  "filter": { "age": { "$gt": 18 } },
+  "sort": { "name": 1 },
+  "limit": 10
+}
+
+```
+
+### **2. Real-Time Subscriptions**
+
+```jsx
+const updates = timeline.subscribe('users', { age: { $gt: 18 } });
+updates.on('data', (user) => console.log(user));
+
+```
+
+### **3. Version Control**
+
+```jsx
+await timeline.branch('experiment-1');
+await timeline.write('users', { id: 1, name: 'Alice' });
+await timeline.commit('experiment-1');
+await timeline.merge('experiment-1', 'main');
+
+```
+
 ## Main Features
 
 - **Distributed**: Timeline is designed to be distributed from the ground up with a strong consistency model, it can be used in a single node or a cluster of nodes.
@@ -132,38 +164,6 @@ An open source event store, versioned and distributed NoSQL local first database
 - **How Timeline Helps**:
     - Retrieves events or snapshots for specific time spans.
     - Supports sharding by time range for faster queries.
-
-## **How Developers Could Interact with Timeline**
-
-### **1. JSON Query Example**
-
-```json
-{
-  "find": "users",
-  "filter": { "age": { "$gt": 18 } },
-  "sort": { "name": 1 },
-  "limit": 10
-}
-
-```
-
-### **2. Real-Time Subscriptions**
-
-```jsx
-const updates = timeline.subscribe('users', { age: { $gt: 18 } });
-updates.on('data', (user) => console.log(user));
-
-```
-
-### **3. Version Control**
-
-```jsx
-await timeline.branch('experiment-1');
-await timeline.write('users', { id: 1, name: 'Alice' });
-await timeline.commit('experiment-1');
-await timeline.merge('experiment-1', 'main');
-
-```
 
 ## What's Next?
 
