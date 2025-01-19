@@ -4,11 +4,7 @@ An open source event store, versioned and distributed NoSQL local first database
 
 ## **What is Timeline?**
 
-**Timeline** is a next-generation NoSQL database that takes great inspiration from the best features of Redis, Event Store, Firestore, MongoDB, and Git.
-
-**Timeline** is a distributed, versioned, and local-first database that is designed to be used in a wide range of applications, from simple key-value stores to complex event-sourced systems, collaborative applications, financial systems that need to be audited, transparency and replay of events, and more with great simplicity and developer experience.
-
-**Timeline** is json first and schemaless with optional schema validation and enforcement, giving both flexibility of nosql databases and the structure of sql databases where needed, json is the primary interface of querying which makes it easy to use and understand.
+**Timeline** is a next-generation NoSQL database that takes great inspiration from the best features of Redis, Event Store, Firestore, MongoDB, and Git designed to be distributed, local first, real time, versioned and schemaless with optional schema validation and enforcement, offering simplicity, better developer experience and easy integration with existing systems.
 
 ## **How Developers Could Interact with Timeline**
 
