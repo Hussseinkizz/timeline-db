@@ -1,0 +1,26 @@
+# Project Structure
+
+timeline-db/
+├── Cargo.toml             # Project metadata and dependencies
+└── src/
+    ├── main.rs            # Entry point: bootstraps the layered architecture
+    ├── extensions/        # Extensions: additional features and plug-ins
+    │   └── mod.rs         # Aggregates and re-exports extension modules
+    ├── messaging/         # Messaging: handles real-time communications
+    │   ├── mod.rs         # Exposes messaging functionalities (e.g., messaging.send)
+    │   ├── inbox.rs       # Handles incoming messages
+    │   ├── outbox.rs      # Handles outgoing messages
+    │   └── pubsub.rs      # Manages pub/sub mechanisms (channels, WebSockets)
+    ├── versioning/        # Versioning: manages branching, merging, and version history
+    │   ├── mod.rs         # Public API for versioning operations
+    │   ├── manager.rs     # High-level operations (e.g., versioning.manager.create_branch)
+    │   ├── branch.rs      # Implements branch creation and management
+    │   ├── merge.rs       # Implements merge operations between branches
+    │   └── history.rs     # Tracks version history and relationships
+    ├── querying/          # Querying: builds and executes queries on the datastore
+    │   ├── mod.rs         # Public API for querying functions
+    │   └── engine.rs      # Core engine for processing and executing queries (e.g., querying.engine.do_something)
+    └── store/             # Store: the database layer managing the DAG-based datastore
+        ├── mod.rs         # Public interface for datastore operations
+        ├── dag.rs         # Implements the DAG structure for version relationships
+        └── setup.rs       # Initializes the database, schemas, and connections (e.g., store.setup::init_schema)
